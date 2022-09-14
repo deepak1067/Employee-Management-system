@@ -1,5 +1,6 @@
 package com.knoldus.employeemanagementsystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,7 +18,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "employee")
-public class Employee {
+public class Employee implements Serializable {
 
     @Id
     @SequenceGenerator(name = "emp_sequence",
@@ -34,10 +36,14 @@ public class Employee {
     @Email
     private String email;
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id")
 //    private Set<Designation> designations = new HashSet<>();
     private Designation designation;
+
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id")

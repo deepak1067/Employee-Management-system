@@ -27,11 +27,9 @@ public class Designation {
     private String designationName;
 
     @NotEmpty(message = "experience can't be empty")
-    //@Size(min = 2, message = "Department name should have at least 2 characters")
     private int experience;
 
     @NotEmpty(message = "Salary can't be empty")
-    //@Size(min = 2, message = "Department name should have at least 2 characters")
     private int salary;
 
     public Long getId() {
